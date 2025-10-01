@@ -108,7 +108,7 @@ const Portfolio = () => {
     },
     {
       title: "Metaverse SMA Al-Kautsar",
-      image: "projects/Al-Kautsar.png",
+      image: "projects/alkautsar.png",
       category: "MetaSchool",
       type: "Metaverse",
       description: "High school metaverse dengan virtual laboratories dan interactive learning modules yang mendukung eksperimen virtual dan pembelajaran STEM",
@@ -118,7 +118,7 @@ const Portfolio = () => {
     },
     {
       title: "Metaverse SMA 2 Metro",
-      image: "projects/SMA2Metro.png",
+      image: "projects/sma2metro.png",
       category: "MetaSchool",
       type: "Metaverse",
       description: "Educational platform dengan interactive learning spaces dan student engagement tools yang meningkatkan partisipasi siswa dalam pembelajaran digital",
@@ -197,7 +197,7 @@ const Portfolio = () => {
     },
     {
       id: 3,
-      image: "certificates/juara2designposter.jpg",
+      image: "certificates/Juara2desainposter.jpg",
       title: "2nd National Poster Design Sosek English Competition (SEC)",
       category: "Poster Design",
       year: "2023",
@@ -677,7 +677,7 @@ const Portfolio = () => {
       {/* Projects (show 3, expandable) */}
       <section id="projects" className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-20 fade-in-on-scroll">
+          <div className="text-center mb-20 ">
             <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-6">
               Featured <span className="text-gradient">Projects</span>
             </h2>
@@ -689,7 +689,7 @@ const Portfolio = () => {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {visibleProjects.map((project, idx) => (
-              <div key={idx} className="group bg-white rounded-2xl shadow-elegant hover-lift cursor-pointer overflow-hidden fade-in-on-scroll hover-glow transition-all duration-500">
+              <div key={idx} className="group bg-white rounded-2xl shadow-elegant hover-lift cursor-pointer overflow-hidden  hover-glow transition-all duration-500">
                 <div className="relative overflow-hidden">
                   <img src={project.image} alt={project.title} className="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110" />
                   <div className="absolute inset-0 project-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center p-6">
@@ -751,7 +751,7 @@ const Portfolio = () => {
       {/* Certificates (show 3, expandable) */}
       <section id="certificates" className="py-24 bg-gradient-custom">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-20 fade-in-on-scroll">
+          <div className="text-center mb-20 ">
             <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-6">
               Certificates & <span className="text-gradient">Recognition</span>
             </h2>
@@ -763,7 +763,7 @@ const Portfolio = () => {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {visibleCerts.map((cert) => (
-              <div key={cert.id} onClick={() => setSelectedCert(cert)} className="glass p-6 rounded-2xl shadow-elegant hover-lift cursor-pointer fade-in-on-scroll certificate-hover hover-glow transition-all duration-500">
+              <div key={cert.id} onClick={() => setSelectedCert(cert)} className="glass p-6 rounded-2xl shadow-elegant hover-lift cursor-pointer  certificate-hover hover-glow transition-all duration-500">
                 <div className="h-40 bg-blue-50 rounded-xl mb-4 flex items-center justify-center relative overflow-hidden hover-scale transition-transform duration-300">
                   <img src={cert.image} alt={cert.title} className="w-full h-full object-cover rounded-xl transition-transform duration-500 hover:scale-110" />
                 </div>
