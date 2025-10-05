@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, ChevronDown, Phone, Instagram, ExternalLink, Award, Briefcase, Star, MapPin, Play, Layers, Palette, Camera, Eye } from 'lucide-react';
+import { Menu, X, ChevronDown, Phone, Instagram, ExternalLink, Award, Briefcase, Star, MapPin, Play, Layers, Palette, Camera, Eye, Linkedin } from 'lucide-react';
 
 const Portfolio = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -178,6 +178,16 @@ const Portfolio = () => {
 
   const certificates = [
     {
+      id: 12,
+      image: "certificates/JGD.jpg",
+      title: "Junior Graphic Designer Competency Certificate",
+      category: "Professional Certification",
+      year: "2024",
+      description: "Certified as Junior Graphic Designer in IT Multimedia by BNSP (valid three years from July 8, 2024)",
+      issuer: "BNSP & BPPTIK Professional Certification Body",
+      featured: true
+    },
+    {
       id: 1,
       image: "certificates/contributionmetaverse.png",
       title: "CONTRIBUTTION CREATION METAVERSE SCHOOL",
@@ -277,15 +287,6 @@ const Portfolio = () => {
       issuer: "Coconut Books"
     },
     {
-      id: 12,
-      image: "certificates/Salinan SERTIFIKAT JGD (1).jpg",
-      title: "Junior Graphic Designer Competency Certificate",
-      category: "Professional Certification",
-      year: "2024",
-      description: "Certified as Junior Graphic Designer in IT Multimedia by BNSP (valid three years from July 8, 2024)",
-      issuer: "BNSP & BPPTIK Professional Certification Body"
-    },
-    {
       id: 13,
       image: "certificates/infografisggprize.png",
       title: "National Infographic Competition",
@@ -296,11 +297,10 @@ const Portfolio = () => {
     }
   ];
 
-  // ✅ Social accounts: image square (1080x1080 responsive) + clickable IG with animation
   const socialAccounts = [
     {
       title: "IKATAN BEASISWA TEKNOKRAT",
-      image: "sosmed/igibatek.png", // square image
+      image: "sosmed/igibatek.png",
       handle: "@ibatek.uti",
       igUrl: "https://instagram.com/ibatek.uti",
       focus: "Educational Content Strategy",
@@ -316,7 +316,7 @@ const Portfolio = () => {
     },
     {
       title: "COE METAVERSE UTI",
-      image: "sosmed/igmeta.png", // square container will crop as 1:1
+      image: "sosmed/igmeta.png",
       handle: "@juarameta",
       igUrl: "https://instagram.com/juarameta",
       focus: "Innovation & Technology Content",
@@ -332,7 +332,6 @@ const Portfolio = () => {
     }
   ];
 
-  // compute visible items (3 on homepage, expandable)
   const visibleProjects = showAllProjects ? projects : projects.slice(0, 3);
   const visibleCerts = showAllCerts ? certificates : certificates.slice(0, 3);
 
@@ -349,6 +348,7 @@ const Portfolio = () => {
         @keyframes float { 0%,100% {transform:translateY(0)} 50% {transform:translateY(-10px)} }
         @keyframes pulse { 0%,100% {transform:scale(1)} 50% {transform:scale(1.05)} }
         @keyframes shimmer { 0% {background-position:-1000px 0} 100% {background-position:1000px 0} }
+        @keyframes goldShine { 0% {background-position:-200% center} 100% {background-position:200% center} }
 
         .animate-fadeInUp { animation: fadeInUp .8s ease-out forwards; }
         .animate-slideInLeft { animation: slideInLeft .8s ease-out forwards; }
@@ -362,6 +362,7 @@ const Portfolio = () => {
         .glass-dark { background:rgba(37,99,235,.95); backdrop-filter:blur(20px); border:1px solid rgba(255,255,255,.2); }
         .shadow-elegant { box-shadow:0 20px 60px rgba(59,130,246,.1); }
         .shadow-deep { box-shadow:0 25px 80px rgba(59,130,246,.15); }
+        .shadow-gold { box-shadow:0 20px 60px rgba(234,179,8,.3), 0 0 40px rgba(234,179,8,.2); }
         .hover-lift { transition:all .4s cubic-bezier(.4,0,.2,1); }
         .hover-lift:hover { transform:translateY(-12px); box-shadow:0 30px 80px rgba(59,130,246,.2); }
         .hover-scale:hover { transform:scale(1.05); }
@@ -376,10 +377,29 @@ const Portfolio = () => {
         .certificate-hover::before { content:''; position:absolute; top:0; left:-100%; width:100%; height:100%; background:linear-gradient(90deg,transparent,rgba(255,255,255,.3),transparent); transition:left .5s; }
         .certificate-hover:hover::before { left:100%; }
 
+        .featured-cert {
+          background: linear-gradient(135deg, rgba(234,179,8,.1) 0%, rgba(253,224,71,.1) 100%);
+          border: 3px solid #eab308;
+          position: relative;
+        }
+        
+        .featured-cert::after {
+          content: '';
+          position: absolute;
+          top: -3px;
+          left: -3px;
+          right: -3px;
+          bottom: -3px;
+          background: linear-gradient(90deg, #eab308, #fbbf24, #eab308);
+          background-size: 200% 100%;
+          border-radius: 1rem;
+          z-index: -1;
+          animation: goldShine 3s linear infinite;
+        }
+
         .project-link-btn { background:rgba(255,255,255,.2); backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,.3); transition:all .3s; }
         .project-link-btn:hover { background:rgba(255,255,255,.3); transform:translateY(-2px); }
 
-        /* IG link animation */
         .ig-link { position:relative; display:inline-flex; align-items:center; gap:6px; transition:transform 300ms ease,color 300ms ease; }
         .ig-link:hover { transform:translateY(-2px); }
         .ig-link::after { content:""; position:absolute; left:0; bottom:-2px; width:100%; height:2px; background:linear-gradient(90deg,#60a5fa,#1d4ed8,#60a5fa); background-size:200% 100%; transform:scaleX(0); transform-origin:left; transition:transform 300ms ease; }
@@ -591,7 +611,6 @@ const Portfolio = () => {
             <div className="w-24 h-1.5 bg-blue-600 mx-auto rounded-full mt-6"></div>
           </div>
 
-          {/* specialties cards */}
           <div className="grid lg:grid-cols-3 gap-8 mb-16">
             {specialties.map((specialty, idx) => {
               const IconComponent = specialty.icon;
@@ -615,11 +634,9 @@ const Portfolio = () => {
             })}
           </div>
 
-          {/* Social accounts: Title → Square Image (1080x1080 responsive) → Description */}
           <div className="grid lg:grid-cols-2 gap-12">
             {socialAccounts.map((account, idx) => (
               <div key={idx} className="glass p-8 rounded-2xl shadow-elegant hover-lift fade-in-on-scroll hover-glow transition-all duration-500">
-                {/* Header */}
                 <div className="flex items-center gap-4 mb-6">
                   <div className="w-14 h-14 bg-blue-600 rounded-2xl flex items-center justify-center hover-scale transition-transform duration-300">
                     <Instagram className="w-7 h-7 text-white" />
@@ -636,14 +653,12 @@ const Portfolio = () => {
                   </div>
                 </div>
 
-                {/* Square image container (1:1) with max dimension 1080px */}
                 <div className="w-full max-w-[1080px] mx-auto">
                   <div className="relative aspect-square rounded-xl overflow-hidden bg-gray-100 mb-6">
                     <img src={account.image} alt={account.title} className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
                   </div>
                 </div>
 
-                {/* Description */}
                 <div className="space-y-6">
                   <div>
                     <h4 className="font-bold text-lg mb-3 text-gray-900">Strategic Objectives</h4>
@@ -674,7 +689,7 @@ const Portfolio = () => {
         </div>
       </section>
 
-      {/* Projects (show 3, expandable) */}
+      {/* Projects */}
       <section id="projects" className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-20 ">
@@ -727,7 +742,6 @@ const Portfolio = () => {
             ))}
           </div>
 
-          {/* Lihat selanjutnya / Lihat lebih sedikit */}
           <div className="text-center mt-10">
             {!showAllProjects ? (
               <button
@@ -748,7 +762,7 @@ const Portfolio = () => {
         </div>
       </section>
 
-      {/* Certificates (show 3, expandable) */}
+      {/* Certificates */}
       <section id="certificates" className="py-24 bg-gradient-custom">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-20 ">
@@ -763,13 +777,29 @@ const Portfolio = () => {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {visibleCerts.map((cert) => (
-              <div key={cert.id} onClick={() => setSelectedCert(cert)} className="glass p-6 rounded-2xl shadow-elegant hover-lift cursor-pointer  certificate-hover hover-glow transition-all duration-500">
-                <div className="h-40 bg-blue-50 rounded-xl mb-4 flex items-center justify-center relative overflow-hidden hover-scale transition-transform duration-300">
-                  <img src={cert.image} alt={cert.title} className="w-full h-full object-cover rounded-xl transition-transform duration-500 hover:scale-110" />
+              <div 
+                key={cert.id} 
+                onClick={() => setSelectedCert(cert)} 
+                className={`glass p-6 rounded-2xl hover-lift cursor-pointer certificate-hover transition-all duration-500 ${
+                  cert.featured ? 'featured-cert shadow-gold' : 'shadow-elegant hover-glow'
+                }`}
+              >
+                {cert.featured && (
+                  <div className="flex items-center justify-center mb-3">
+                    <span className="bg-gradient-to-r from-yellow-500 to-yellow-600 text-white px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-wide shadow-lg flex items-center gap-2">
+                      <Award className="w-4 h-4" />
+                      Professional Certification
+                    </span>
+                  </div>
+                )}
+                <div className="h-48 bg-blue-50 rounded-xl mb-4 flex items-center justify-center relative overflow-hidden hover-scale transition-transform duration-300">
+                  <img src={cert.image} alt={cert.title} className="w-full h-full object-contain rounded-xl transition-transform duration-500 hover:scale-110" />
                 </div>
                 <div className="text-center">
                   <div className="flex items-center justify-between mb-2">
-                    <span className="inline-block px-2 py-1 bg-blue-100 text-blue-700 text-xs font-bold rounded-full hover-scale transition-transform duration-200">{cert.category}</span>
+                    <span className={`inline-block px-2 py-1 text-xs font-bold rounded-full hover-scale transition-transform duration-200 ${
+                      cert.featured ? 'bg-yellow-100 text-yellow-700' : 'bg-blue-100 text-blue-700'
+                    }`}>{cert.category}</span>
                     <span className="text-gray-500 text-xs font-medium">{cert.year}</span>
                   </div>
                   <p className="text-gray-900 font-bold text-sm leading-tight mb-2">{cert.title}</p>
@@ -779,7 +809,6 @@ const Portfolio = () => {
             ))}
           </div>
 
-          {/* Lihat selanjutnya / Lihat lebih sedikit */}
           <div className="text-center mt-10">
             {!showAllCerts ? (
               <button
@@ -800,17 +829,19 @@ const Portfolio = () => {
         </div>
       </section>
 
-      {/* Lightbox: Certificate */}
+      {/* Certificate Lightbox */}
       {selectedCert && (
-        <div className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4 animate-fadeInUp" onClick={() => setSelectedCert(null)}>
-          <button className="absolute top-6 right-6 text-white hover:text-blue-400 transition-colors z-10 hover-scale" onClick={() => setSelectedCert(null)}>
+        <div className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4 overflow-y-auto animate-fadeInUp" onClick={() => setSelectedCert(null)}>
+          <button className="fixed top-6 right-6 text-white hover:text-blue-400 transition-colors z-10 hover-scale" onClick={() => setSelectedCert(null)}>
             <X size={32} />
           </button>
-          <div className="max-w-4xl w-full hover-scale transition-transform duration-300" onClick={(e) => e.stopPropagation()}>
-            <img src={selectedCert.image} alt={selectedCert.title} className="w-full h-auto rounded-2xl shadow-2xl hover-glow" />
-            <div className="mt-6 text-center">
+          <div className="max-w-4xl w-full my-8 hover-scale transition-transform duration-300" onClick={(e) => e.stopPropagation()}>
+            <img src={selectedCert.image} alt={selectedCert.title} className="w-full h-auto max-h-[80vh] object-contain rounded-2xl shadow-2xl hover-glow mb-6" />
+            <div className="text-center bg-gray-900/50 backdrop-blur-sm p-6 rounded-2xl">
               <div className="flex items-center justify-center gap-4 mb-3">
-                <span className="inline-block px-4 py-2 bg-blue-600 text-white text-sm font-bold rounded-full hover-scale transition-transform duration-200">{selectedCert.category}</span>
+                <span className={`inline-block px-4 py-2 text-sm font-bold rounded-full hover-scale transition-transform duration-200 ${
+                  selectedCert.featured ? 'bg-yellow-600 text-white' : 'bg-blue-600 text-white'
+                }`}>{selectedCert.category}</span>
                 <span className="text-blue-300 font-medium">{selectedCert.year}</span>
               </div>
               <h3 className="text-white text-2xl font-bold mb-2">{selectedCert.title}</h3>
@@ -821,7 +852,7 @@ const Portfolio = () => {
         </div>
       )}
 
-      {/* Modal: Project detail */}
+      {/* Project Modal */}
       {selectedProject && (
         <div className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4 overflow-y-auto animate-fadeInUp" onClick={() => setSelectedProject(null)}>
           <button className="absolute top-6 right-6 text-white hover:text-blue-400 transition-colors z-10 hover-scale" onClick={() => setSelectedProject(null)}>
@@ -857,18 +888,6 @@ const Portfolio = () => {
                       Live Demo
                     </a>
                   )}
-                  {selectedProject.githubLink && (
-                    <a href={selectedProject.githubLink} target="_blank" rel="noopener noreferrer" className="border-2 border-blue-600 text-blue-600 px-6 py-3 rounded-xl font-semibold hover:bg-blue-600 hover:text-white transition-all hover-lift flex items-center gap-3">
-                      <Star size={20} />
-                      GitHub
-                    </a>
-                  )}
-                  {selectedProject.videoLink && (
-                    <a href={selectedProject.videoLink} target="_blank" rel="noopener noreferrer" className="border-2 border-green-600 text-green-600 px-6 py-3 rounded-xl font-semibold hover:bg-green-600 hover:text-white transition-all hover-lift flex items-center gap-3">
-                      <Play size={20} />
-                      Watch Video
-                    </a>
-                  )}
                 </div>
               </div>
             </div>
@@ -877,45 +896,54 @@ const Portfolio = () => {
       )}
 
       {/* Contact */}
-      <section id="contact" className="py-24 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="mb-20 fade-in-on-scroll">
-            <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-6">
-              Let's Create <span className="text-gradient">Together</span>
-            </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-              Ready to transform your creative vision into stunning digital reality
-            </p>
-            <div className="w-24 h-1.5 bg-blue-600 mx-auto rounded-full mt-6"></div>
-          </div>
+<section id="contact" className="py-24 bg-white">
+  <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <div className="mb-20 fade-in-on-scroll">
+      <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-6">
+        Let's Create <span className="text-gradient">Together</span>
+      </h2>
+      <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+        Ready to transform your creative vision into stunning digital reality
+      </p>
+      <div className="w-24 h-1.5 bg-blue-600 mx-auto rounded-full mt-6"></div>
+    </div>
 
-          <div className="grid md:grid-cols-2 gap-8 mb-16">
-            <a href="tel:0896-8424-5977" className="glass p-8 rounded-2xl shadow-elegant hover-lift border border-blue-100 group fade-in-on-scroll hover-glow transition-all duration-500">
-              <div className="w-20 h-20 bg-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-blue-700 transition-all hover-scale duration-300">
-                <Phone size={28} className="text-white" />
-              </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-3">Direct Contact</h3>
-              <p className="text-3xl font-black text-blue-600 mb-3 hover-scale transition-transform duration-200">0896-8424-5977</p>
-              <p className="text-gray-600 font-medium">Available for project consultation</p>
-            </a>
-
-            <a href="https://instagram.com/Ribloozy.ovnn" target="_blank" rel="noopener noreferrer" className="glass p-8 rounded-2xl shadow-elegant hover-lift border border-blue-100 group fade-in-on-scroll hover-glow transition-all duration-500">
-              <div className="w-20 h-20 bg-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-blue-700 transition-all hover-scale duration-300">
-                <Instagram size={28} className="text-white" />
-              </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-3">Instagram</h3>
-              <p className="text-3xl font-black text-blue-600 mb-3 hover-scale transition-transform duration-200">@Ribloozy.ovnn</p>
-              <p className="text-gray-600 font-medium">Follow my creative process</p>
-            </a>
-          </div>
-
-          <div className="glass-dark p-8 rounded-2xl inline-block fade-in-on-scroll hover-lift hover-glow transition-all duration-500">
-            <h3 className="text-2xl font-bold text-white mb-2">Risma Oktaviani</h3>
-            <p className="text-lg text-blue-200 mb-2">Creative Designer & 3D Specialist</p>
-            <p className="text-sm text-blue-300">Crafting immersive digital experiences since 2022</p>
-          </div>
+    <div className="grid md:grid-cols-3 gap-8 mb-16">
+      <a href="tel:0896-8424-5977" className="glass p-8 rounded-2xl shadow-elegant border border-blue-100 group fade-in-on-scroll hover-glow transition-all duration-500 hover:scale-110 hover:shadow-2xl">
+        <div className="w-20 h-20 bg-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-blue-700 group-hover:scale-110 transition-all duration-300">
+          <Phone size={28} className="text-white" />
         </div>
-      </section>
+        <h3 className="text-2xl font-bold text-gray-900 mb-3">Direct Contact</h3>
+        <p className="text-2xl font-black text-blue-600 mb-3 transition-transform duration-200">0896-8424-5977</p>
+        <p className="text-gray-600 font-medium">Available for project consultation</p>
+      </a>
+
+      <a href="https://instagram.com/Ribloozy.ovnn" target="_blank" rel="noopener noreferrer" className="glass p-8 rounded-2xl shadow-elegant border border-blue-100 group fade-in-on-scroll hover-glow transition-all duration-500 hover:scale-110 hover:shadow-2xl">
+        <div className="w-20 h-20 bg-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 group-hover:bg-blue-700 transition-all duration-300">
+          <Instagram size={28} className="text-white" />
+        </div>
+        <h3 className="text-2xl font-bold text-gray-900 mb-3">Instagram</h3>
+        <p className="text-2xl font-black text-transparent bg-blue-600 bg-clip-text mb-3 transition-transform duration-200">@Ribloozy.ovnn</p>
+        <p className="text-gray-600 font-medium">Follow my creative process</p>
+      </a>
+
+      <a href="https://www.linkedin.com/in/risma-oktaviani-23052b30a/" target="_blank" rel="noopener noreferrer" className="glass p-8 rounded-2xl shadow-elegant border border-blue-100 group fade-in-on-scroll hover-glow transition-all duration-500 hover:scale-110 hover:shadow-2xl">
+        <div className="w-20 h-20 bg-blue-700 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-blue-800 group-hover:scale-110 transition-all duration-300">
+          <Linkedin size={28} className="text-white" />
+        </div>
+        <h3 className="text-2xl font-bold text-gray-900 mb-3">LinkedIn</h3>
+        <p className="text-2xl font-black text-blue-700 mb-3 transition-transform duration-200">Risma Oktaviani</p>
+        <p className="text-gray-600 font-medium">Professional network & updates</p>
+      </a>
+    </div>
+
+    <div className="glass-dark p-8 rounded-2xl inline-block fade-in-on-scroll hover-lift hover-glow transition-all duration-500">
+      <h3 className="text-2xl font-bold text-white mb-2">Risma Oktaviani</h3>
+      <p className="text-lg text-blue-200 mb-2">Creative Designer & 3D Specialist</p>
+      <p className="text-sm text-blue-300">Crafting immersive digital experiences since 2022</p>
+    </div>
+  </div>
+</section>
     </div>
   );
 };
